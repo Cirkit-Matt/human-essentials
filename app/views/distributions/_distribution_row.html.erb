@@ -15,6 +15,9 @@
   <% distribution_has_inactive_item = @distributions_with_inactive_items.include?(distribution_row.id) %>
   <td class="text-right">
     <%= view_button_to distribution_path(distribution_row) %>
+     <% if distribution_row.request %>
+    <%= associated_request_button_to request_path(distribution_row.request) %>\
+    <% end %>
     <% if (!distribution_row.complete? && !distribution_row.future?) || current_user.has_cached_role?(Role::ORG_ADMIN, current_organization) %>
       <%= edit_button_to edit_distribution_path(distribution_row), enabled: !distribution_has_inactive_item %>
     <% end %>
@@ -26,4 +29,6 @@
     <% if distribution_has_inactive_item %>
       <div class="low_priority_warning">Has Inactive Items</div>
     <% end %>
+   
+
   </td>

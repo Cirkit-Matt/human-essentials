@@ -157,6 +157,10 @@ module UiHelper
     _link_to link, { icon: "sync", type: "info", text: "Refresh", size: "md" }.merge(options), properties
   end
 
+  def associated_request_button_to(link, options = {})
+    _link_to link, { icon: "eye", type: "secondary", text: "View Request", size: "xs" }.merge(options)
+  end
+
   def _link_to(link, options = {}, properties = {})
     icon = options[:icon]
     text = options[:text]

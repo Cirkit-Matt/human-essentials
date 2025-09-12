@@ -400,6 +400,16 @@ RSpec.feature "Distributions", type: :system do
       end.to change { Distribution.count }.by(-1)
     end
 
+context "with a request"
+    let!(:request) { create(:request, distribution: distribution)}
+     it "the user can view request" do
+          click_on "View Request"
+     
+        expect(page).to have_content "Request from #{distribution.partner.name}"
+
+    end
+  end
+
     context "when delivery method is not shipped" do
       it "should not display shipping_cost field" do
         click_on "Edit", match: :first
